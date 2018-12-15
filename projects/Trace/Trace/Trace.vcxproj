@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{BCFE58A8-D5CE-4A6B-B89F-B40F149B9AA5}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Trace</RootNamespace>
+    <ProjectName>Trace</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="PinToolPath.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)Bin\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_SECURE_SCL=0;WIN32;NDEBUG;_WINDOWS;_USRDLL;SAMPLEPINTOOLS_EXPORTS;TARGET_WINDOWS;TARGET_IA32;HOST_IA32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(pin-214)\extras\xed-ia32\include;$(SolutionDir)Pin\source\include\pin;$(SolutionDir)Pin\source\include\pin\gen;$(SolutionDir)Pin\extras\xed2-ia32\include;$(SolutionDir)Pin\extras\components\include</AdditionalIncludeDirectories>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(PinToolPath)\extras\xed-ia32\include;$(PinToolPath)\source\include\pin;$(PinToolPath)\source\include\pin\gen;$(PinToolPath)\extras\xed2-ia32\include;$(PinToolPath)\extras\components\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(PinToolPath)\extras\xed-ia32\lib;$(PinToolPath)\ia32\lib;$(PinToolPath)\ia32\lib-ext;$(PinToolPath)\extras\xed2-ia32\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ntdll-32.lib;libxed.lib;pin.lib;pinvm.lib;libcmt.lib;libcpmt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <EntryPointSymbol>Ptrace_DllMainCRTStartup@12</EntryPointSymbol>
+      <AdditionalOptions>/EXPORT:main %(AdditionalOptions)</AdditionalOptions>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="ModuleInfo.cpp" />
+    <ClCompile Include="ProcessInfo.cpp" />
+    <ClCompile Include="TraceLog.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ModuleInfo.h" />
+    <ClInclude Include="ProcessInfo.h" />
+    <ClInclude Include="TraceLog.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
