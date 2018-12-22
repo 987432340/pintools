@@ -27,6 +27,8 @@ public:
     }
 
 	void logIns(const ADDRINT Addr, const string ins);
+	void logImg(const string imageName, const ADDRINT startAddr, const ADDRINT endAddr, bool bValid);
+
     void logCall(const ADDRINT prevAddr, const string module, const string func = "");
     void logCall(const ADDRINT prevAddr, const ADDRINT callAddr);
     void logSectionChange(const ADDRINT addr, std::string sectionName);

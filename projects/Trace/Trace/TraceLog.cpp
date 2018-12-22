@@ -2,6 +2,8 @@
 
 #define DELIMITER ';'
 
+TraceLog traceLog;
+
 std::string get_dll_name(const std::string& str)
 {
     std::size_t len = str.length();
@@ -71,5 +73,16 @@ void TraceLog::logNewSectionCalled(const ADDRINT prevAddr, std::string prevSecti
 void TraceLog::logIns(const ADDRINT Addr, const string ins)
 {
 	m_traceFile	<< std::hex << std::showbase << Addr << "\t" << ins << std::endl;
+	m_traceFile.flush();
+}
+
+void TraceLog::logImg(const string imageName, const ADDRINT startAddr, const ADDRINT endAddr, bool bValid)
+{
+	m_traceFile 
+		<< "imageName: " << imageName << DELIMITER
+		<< std::hex << std::showbase << startAddr << DELIMITER
+		<< std::hex << std::showbase << endAddr << DELIMITER
+		<< std::endl;
+
 	m_traceFile.flush();
 }

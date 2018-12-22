@@ -1,4 +1,7 @@
 #include "ModuleInfo.h"
+#include "TraceLog.h"
+
+extern TraceLog traceLog;
 
 bool init_module(s_module &mod, const ADDRINT &Address)
 {
@@ -17,11 +20,13 @@ bool init_module(s_module &mod, const IMG &Image)
         mod.is_valid = false;
         return false;
     }
+
     mod.name = std::string(IMG_Name(Image));
     mod.start = IMG_LoadOffset(Image);
     mod.end = mod.start + IMG_SizeMapped(Image);
     mod.is_valid = true;
-    return true;
+	traceLog.logImg(mod.name, mod.start, mod.end, mod.is_valid);
+	return true;
 }
 
 bool init_section(s_module &section, const ADDRINT &ImageBase, const SEC &sec)

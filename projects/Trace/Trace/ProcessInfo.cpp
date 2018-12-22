@@ -1,5 +1,7 @@
 #include "ProcessInfo.h"
+#include "TraceLog.h"
 
+extern TraceLog traceLog;
 //----
 
 bool is_my_name(const s_module* mod, std::string name)
